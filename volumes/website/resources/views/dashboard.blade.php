@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Login</title>
 
-        <!-- Bootstrap -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- Bootstrap Material Design -->
@@ -24,7 +24,7 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -34,39 +34,38 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Time tracker</a>
+                <a class="navbar-brand" href="#">Dashboard</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/login">Login <span class="sr-only"></span></a></li>
-                    <li><a href="/register">Register</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$username}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Projects</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Account settings</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
 
-    <div class="col-md-8">
-        <div class="well page active" id="dropdown">
-            <h1 class="header">Time tracker</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempor iaculis velit at tristique. Vestibulum at eleifend orci. Nam sodales lacus aliquam est pulvinar, quis efficitur risus placerat. Sed sagittis ac mauris at porta. Vivamus dui orci, blandit vel tincidunt at, gravida ornare mi. Vestibulum porta tincidunt arcu, sed elementum dolor scelerisque a. Aliquam quis orci est. Maecenas quis tellus lacinia, tempus urna et, aliquet elit. Donec tincidunt velit vel nibh pulvinar, non consectetur neque volutpat. Mauris consectetur orci sit amet lacus laoreet pulvinar.</p>
-
-                <img src="img/cartoon.jpg" alt="..." class="img-thumbnail">
-
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">Latest news!</div>
-            <div class="panel-body">
-                Started working on Time tracker!<br>
-                04/02/2017
+    @if(session()->has('registered'))
+        <div class="col-md-12">
+            <div class="bs-component">
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Well done!</strong> {{ session('registered') }}
+                </div>
             </div>
         </div>
+
+    @endif
+
+    <div class="col-md-12">
+        hi :)
     </div>
 </div>
 

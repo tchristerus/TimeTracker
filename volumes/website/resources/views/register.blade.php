@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Login</title>
+    <title>Register</title>
 
-        <!-- Bootstrap -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- Bootstrap Material Design -->
@@ -38,35 +38,60 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/login">Login <span class="sr-only"></span></a></li>
-                    <li><a href="/register">Register</a></li>
+                    <li class="active"><a href="/register">Register</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
 
-    <div class="col-md-8">
-        <div class="well page active" id="dropdown">
-            <h1 class="header">Time tracker</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempor iaculis velit at tristique. Vestibulum at eleifend orci. Nam sodales lacus aliquam est pulvinar, quis efficitur risus placerat. Sed sagittis ac mauris at porta. Vivamus dui orci, blandit vel tincidunt at, gravida ornare mi. Vestibulum porta tincidunt arcu, sed elementum dolor scelerisque a. Aliquam quis orci est. Maecenas quis tellus lacinia, tempus urna et, aliquet elit. Donec tincidunt velit vel nibh pulvinar, non consectetur neque volutpat. Mauris consectetur orci sit amet lacus laoreet pulvinar.</p>
+    <div class="col-md-12 ">
+        <div class="col-md-4"></div>
 
-                <img src="img/cartoon.jpg" alt="..." class="img-thumbnail">
+        <div class="col-md-4">
+            <div class="well page">
+                <h1 class="header text-center">Register</h1>
 
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">Latest news!</div>
-            <div class="panel-body">
-                Started working on Time tracker!<br>
-                04/02/2017
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+                <form method="POST">
+                    {{csrf_field()}}
+
+                    <div class="form-group label-floating is-empty">
+                        <label for="username" class="control-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+
+                    <div class="form-group label-floating is-empty">
+                        <label for="email" class="control-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+
+                    <div class="form-group label-floating is-empty">
+                        <label for="password" class="control-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+
+                    <div class="form-group label-floating is-empty">
+                        <label for="password2" class="control-label">Re-enter password</label>
+                        <input type="password" class="form-control" id="password2" name="password2">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-raised btn-info btn-block" value="Register"><div class="ripple-container"></div></a>
+                    </div>
+                </form>
             </div>
         </div>
+        <div class="col-md-4"></div>
     </div>
 </div>
 

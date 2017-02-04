@@ -23,7 +23,7 @@ services:
       context: .
       dockerfile: mariadb/Dockerfile
     environment:
-      - MYSQL_ROOT_PASSWORD=test123
+      - MYSQL_ROOT_PASSWORD=85411a79b251b6566e2e0b0ee77b774d
     networks:
       - default
     volumes:

@@ -23,10 +23,28 @@ Route::get('/contact', function(){
     return view('contact');
 });
 
-Route::get('/login', function(){
-    return view('login');
+
+Route::group(['middleware'=>'guest'],function() {
+    Route::get('/login', function(){
+        return view('login');
+    });
+    Route::post('/login','UserController@authenticate');
+
+
+    Route::get('/register', function(){
+        return view('register');
+    });
+    Route::post('/register', 'UserController@register');
 });
 
-Route::get('/register', function(){
-    return view('register');
+Route::group(['middleware'=>'auth'],function() {
+    Route::get('/dashboard', function () {
+        $username = Auth::user()->username;
+        return view('dashboard', ['username'=>$username]);
+    });
+
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect('/login');
+    });
 });
