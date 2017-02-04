@@ -1,0 +1,54 @@
+version: '2'
+
+services:
+
+  # Webserver
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    volumes:
+      - ./volumes/website:/website
+    ports:
+      - "80:80"
+    command: /bin/bash -c "nginx -g 'daemon off;'"
+    links:
+      - php-fpm
+    networks:
+      - default
+
+  # Database
+  mariadb:
+    build:
+      context: .
+      dockerfile: mariadb/Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=test123
+    networks:
+      - default
+    volumes:
+      - mariadb:/var/lib/mysql
+
+  # PHP FPM
+  php-fpm:
+    build:
+      context: .
+      dockerfile: php-fpm/Dockerfile
+    volumes:
+      - ./volumes/website:/website
+    links:
+      - mariadb
+    ports:
+      - "9000:9000"
+
+  # PHPMyAdmin
+  pma:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=mariadb
+
+volumes:
+  mariadb:
+  redis:
