@@ -1,3 +1,2 @@
 volumes/mariadb
 .idea/
-docker-compose.yml
