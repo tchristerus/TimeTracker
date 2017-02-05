@@ -1,3 +1,5 @@
+@include('view')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,62 +9,37 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Login</title>
 
-        <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    @yield('css')
 
-    <!-- Bootstrap Material Design -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-material-design.min.css">
-    <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
 
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Time tracker</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/login">Login <span class="sr-only"></span></a></li>
-                    <li><a href="/register">Register</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-    </nav>
+<div class="container-fluid">
+
+    @yield('navbar')
 
     <div class="col-md-8">
         <div class="well page active" id="dropdown">
-            <h1 class="header">Time tracker</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempor iaculis velit at tristique. Vestibulum at eleifend orci. Nam sodales lacus aliquam est pulvinar, quis efficitur risus placerat. Sed sagittis ac mauris at porta. Vivamus dui orci, blandit vel tincidunt at, gravida ornare mi. Vestibulum porta tincidunt arcu, sed elementum dolor scelerisque a. Aliquam quis orci est. Maecenas quis tellus lacinia, tempus urna et, aliquet elit. Donec tincidunt velit vel nibh pulvinar, non consectetur neque volutpat. Mauris consectetur orci sit amet lacus laoreet pulvinar.</p>
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="header">Time Tracker started development!</h2>
+                    <p style="clear:both">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie elementum dui eget aliquam. Aliquam non ante arcu. Nulla posuere ipsum risus, ut hendrerit metus dignissim non. In mauris nunc, imperdiet sed turpis non, hendrerit pulvinar ante. Cras tincidunt molestie lobortis. Pellentesque ut lobortis arcu, et gravida eros. In turpis arcu, elementum eu nunc id, sodales gravida ipsum. Curabitur vulputate justo ut nulla iaculis, ac sagittis purus fringilla.
 
-                <img src="img/cartoon.jpg" alt="..." class="img-thumbnail">
-
+                        Fusce faucibus pretium turpis posuere suscipit. Maecenas faucibus pellentesque nibh, volutpat rhoncus leo commodo eget. Donec rutrum elit in auctor tristique. Nulla vehicula interdum magna, sed posuere nisl sollicitudin id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec ligula id dui lobortis fringilla. Sed quis consectetur metus, non sodales eros. Curabitur mattis blandit risus vitae porta.</p>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-responsive" src="img/cartoon.jpg"/>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">Latest news!</div>
             <div class="panel-body">
+                Login and register is done!<br>
+                05/02/2017
+                <br><br>
                 Started working on Time tracker!<br>
                 04/02/2017
             </div>
@@ -70,17 +47,7 @@
     </div>
 </div>
 
+@yield('scripts')
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="js/material.min.js"></script>
-<script src="js/ripples.min.js"></script>
-
-<!-- Initializing material design -->
-<script>
-    $.material.init();
-</script>
 </body>
 </html>

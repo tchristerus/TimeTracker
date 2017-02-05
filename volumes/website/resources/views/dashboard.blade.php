@@ -1,3 +1,5 @@
+@include('view')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,23 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Login</title>
+    <title>Dashboard</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    @yield('css')
 
-    <!-- Bootstrap Material Design -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-material-design.min.css">
-    <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
-
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <div class="container-fluid">
@@ -39,7 +28,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$username}}<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$name}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Projects</a></li>
                             <li role="separator" class="divider"></li>
@@ -64,22 +53,57 @@
 
     @endif
 
-    <div class="col-md-12">
-        hi :)
+    <div class="row">
+        <div class="col-md-3 well">
+            <h1 class="header text-center">Latest actions</h1>
+            <div class="bs-component">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="row-picture">
+                            <img class="circle" src="img/profileImage.jpg" alt="icon">
+                        </div>
+                        <div class="row-content">
+                            <h4 class="list-group-item-heading">Worked 25 minutes</h4>
+
+                            <p class="list-group-item-text">You worked for 25 minutes on project 'TimeTracker'</p>
+                        </div>
+                    </div>
+                    <div class="list-group-separator"></div>
+                    <div class="list-group-item">
+                        <div class="row-picture">
+                            <img class="circle" src="img/profileImage.jpg" alt="icon">
+                        </div>
+                        <div class="row-content">
+                            <h4 class="list-group-item-heading">Modified</h4>
+
+                            <p class="list-group-item-text">You modified project 'TimeTracker'</p>
+                        </div>
+                    </div>
+                    <div class="list-group-separator"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            @for ($i = 0; $i < 10; $i++)
+                <div class="col-md-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Project {{$i+1}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <i class="fa fa-clock-o fa-1x vcenter"></i><strong> Worked 352 hours on this project!</strong><br>
+                            <i class="fa fa-hourglass-start fa-1x vcenter"></i> Not active
+                            <a class="btn btn-raised btn-info btn-block">Start<div class="ripple-container"></div></a>
+                        </div>
+                    </div>
+                </div>
+             @endfor
+        </div>
     </div>
 </div>
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="js/material.min.js"></script>
-<script src="js/ripples.min.js"></script>
-
-<!-- Initializing material design -->
-<script>
-    $.material.init();
-</script>
+@yield('scripts')
 </body>
 </html>

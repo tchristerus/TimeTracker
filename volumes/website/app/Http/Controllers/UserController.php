@@ -12,7 +12,9 @@ class UserController extends Controller
 {
     public function register(RegisterRequest $req){
         $user = new User();
-        $user->username = $req->username;
+        $user->surname = ucfirst($req->surname);
+        $user->lastname = ucfirst($req->lastname);
+        $user->gender = $req->gender;
         $user->email = $req->email;
         $user->password = bcrypt($req->password);
 
@@ -46,7 +48,10 @@ class UserController extends Controller
             return redirect('/dashboard');
         }
 
-        return response('Wrong username or password',403);
+        return redirect('/login')->with(
+            [
+                'login_error' => "Something went wrong while logging in. This may be an internal problem."
+            ]);
     }
 
 }

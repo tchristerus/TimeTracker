@@ -39,8 +39,8 @@ Route::group(['middleware'=>'guest'],function() {
 
 Route::group(['middleware'=>'auth'],function() {
     Route::get('/dashboard', function () {
-        $username = Auth::user()->username;
-        return view('dashboard', ['username'=>$username]);
+        $name = Auth::user()->surname . ' ' . Auth::user()->lastname;
+        return view('dashboard', ['name'=>$name]);
     });
 
     Route::get('/logout', function(){
