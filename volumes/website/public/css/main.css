@@ -11,3 +11,9 @@ body {
 .vcenter{
     vertical-align: middle;
 }
+
+.btn-fab-add{
+    position: absolute!important;
+    bottom: 15px;
+    right:15px;
+}

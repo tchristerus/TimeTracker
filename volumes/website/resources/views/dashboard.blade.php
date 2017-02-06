@@ -28,7 +28,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$name}}<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$user->surname}} {{$user->lastname}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Projects</a></li>
                             <li role="separator" class="divider"></li>
@@ -85,23 +85,24 @@
         </div>
         <div class="col-md-9">
 
-            @for ($i = 0; $i < 10; $i++)
+            @foreach($projects as $project)
                 <div class="col-md-4">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Project {{$i+1}}</h3>
+                            <h3 class="panel-title">{{$project->name}}</h3>
                         </div>
                         <div class="panel-body">
-                            <i class="fa fa-clock-o fa-1x vcenter"></i><strong> Worked 352 hours on this project!</strong><br>
+                            <i class="fa fa-clock-o fa-1x vcenter"></i><strong> {{$project->description}}</strong><br>
                             <i class="fa fa-hourglass-start fa-1x vcenter"></i> Not active
                             <a class="btn btn-raised btn-info btn-block">Start<div class="ripple-container"></div></a>
                         </div>
                     </div>
                 </div>
-             @endfor
+            @endforeach
         </div>
     </div>
 </div>
+<a href="/project/add" class="btn btn-danger btn-fab btn-fab-add"><i class="material-icons">add</i><div class="ripple-container"></div></a>
 
 
 @yield('scripts')

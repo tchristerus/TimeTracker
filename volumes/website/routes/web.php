@@ -38,10 +38,10 @@ Route::group(['middleware'=>'guest'],function() {
 });
 
 Route::group(['middleware'=>'auth'],function() {
-    Route::get('/dashboard', function () {
-        $name = Auth::user()->surname . ' ' . Auth::user()->lastname;
-        return view('dashboard', ['name'=>$name]);
-    });
+    Route::get('/dashboard','ProjectController@getProjects');
+
+    //temp
+    Route::get('/dashboard/project/add/{name}/{description}', 'ProjectController@addProject');
 
     Route::get('/logout', function(){
         Auth::logout();

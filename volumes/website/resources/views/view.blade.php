@@ -32,6 +32,7 @@
     <!-- Bootstrap Material Design -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap-material-design.min.css">
     <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Main custom CSS -->
     <link rel="stylesheet" href="css/main.css">
 @endsection
