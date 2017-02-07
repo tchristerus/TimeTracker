@@ -3,13 +3,13 @@
         {{csrf_field()}}
 
         <div class="form-group label-floating is-empty">
-            <label for="surname" class="control-label">Surname</label>
-            <input type="text" class="form-control" id="surname" name="surname">
+            <label for="forename" class="control-label">forename</label>
+            <input type="text" class="form-control" id="forename" name="forename">
         </div>
 
         <div class="form-group label-floating is-empty">
-            <label for="lastname" class="control-label">Last name</label>
-            <input type="text" class="form-control" id="lastname" name="lastname">
+            <label for="surname" class="control-label">Surname</label>
+            <input type="text" class="form-control" id="surname" name="surname">
         </div>
 
         <div class="form-group label-floating is-empty">
