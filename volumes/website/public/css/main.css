@@ -31,3 +31,8 @@ body {
     float: right;
     clear: left;
 }
+
+#btn_yes{
+    margin-bottom: 0;
+    margin-left: 5px;
+}

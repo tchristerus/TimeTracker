@@ -1,4 +1,5 @@
 @include('view')
+@include('sections/dialogs')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +63,7 @@
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{$project->name}}</h3>
-                            <a href="dashboard/project/remove/{{$project->id}}"><i class="material-icons delete-button">clear</i></a>
+                            <a href="" data-title="{{$project->name}}" data-href="dashboard/project/remove/{{$project->id}}" data-toggle="modal" data-target="#remove-project-dialog"><i class="material-icons delete-button">clear</i></a>
                         </div>
                         <div class="panel-body">
                             <strong>Description: </strong>
@@ -78,38 +79,12 @@
     </div>
 </div>
 
-<a href="" class="btn btn-danger btn-fab btn-fab-add" data-toggle="modal" data-target="#complete-dialog"><i class="material-icons">add</i><div class="ripple-container"></div></a>
+<a href="" class="btn btn-danger btn-fab btn-fab-add" data-toggle="modal" data-target="#add-project-dialog"><i class="material-icons">add</i><div class="ripple-container"></div></a>
 
-<div id="complete-dialog" class="modal fade" tabindex="-1" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Create new project</h4>
-            </div>
-            <div class="modal-body">
-                <form action="/dashboard/project/add" method="post">
-                    {{csrf_field()}}
-
-                    <div class="form-group label-floating is-empty">
-                        <label for="name" class="control-label">Project title</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                    </div>
-
-                    <div class="form-group label-floating is-empty">
-                        <label for="description" class="control-label">Description</label>
-                        <textarea id="description" name="description" class="form-control"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-raised btn-info btn-block" value="Create project"><div class="ripple-container"></div></a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+@yield('add_project_dialog')
+@yield('remove_project_warning_dialog')
 
 @yield('scripts')
+
 </body>
 </html>

@@ -52,6 +52,14 @@
     <!-- Initializing material design -->
     <script>
         $.material.init();
+
+
+        // are you sure to remove project ... dialog
+        $('#remove-project-dialog').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            $('#project-name').html('<strong>' + $(e.relatedTarget).data('title') + '</strong>');
+            $(this).find('#btn_yes').attr('href',$(e.relatedTarget).data('href'));
+        });
     </script>
 @endsection
 
