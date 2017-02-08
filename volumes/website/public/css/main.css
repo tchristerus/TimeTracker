@@ -36,3 +36,15 @@ body {
     margin-bottom: 0;
     margin-left: 5px;
 }
+
+.navbar-no-margin-bottom{
+    margin-bottom: 0px;
+}
+
+.no-padding{
+    padding:0px;
+}
+
+.nav-tabs>li.active{
+    background-color: rgba(255,255,255,.1);
+}
