@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\AddProjectRequest;
 use App\Project;
 use Illuminate\Http\Request;
 use Auth;
@@ -20,7 +21,7 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function addProject (Request $req){
+    public function addProject (AddProjectRequest $req){
         $project = new Project();
         $project->userId = Auth::getUser()->id;
         $project->name = $req->name;

@@ -40,8 +40,7 @@ Route::group(['middleware'=>'guest'],function() {
 Route::group(['middleware'=>'auth'],function() {
     Route::get('/dashboard','ProjectController@getProjects');
 
-    //temp
-    Route::get('/dashboard/project/add/{name}/{description}', 'ProjectController@addProject');
+    Route::post('dashboard/project/add', 'ProjectController@addProject');
 
     Route::get('/logout', function(){
         Auth::logout();
