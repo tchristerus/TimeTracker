@@ -62,6 +62,7 @@
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{$project->name}}</h3>
+                            <a href="dashboard/project/remove/{{$project->id}}"><i class="material-icons delete-button">clear</i></a>
                         </div>
                         <div class="panel-body">
                             <strong>Description: </strong>
@@ -76,6 +77,7 @@
         </div>
     </div>
 </div>
+
 <a href="" class="btn btn-danger btn-fab btn-fab-add" data-toggle="modal" data-target="#complete-dialog"><i class="material-icons">add</i><div class="ripple-container"></div></a>
 
 <div id="complete-dialog" class="modal fade" tabindex="-1" style="display: none;">

@@ -17,3 +17,17 @@ body {
     bottom: 15px;
     right:15px;
 }
+
+.panel-heading {
+    text-decoration: none;
+}
+
+.panel-heading h3{
+    display: inline-block;
+}
+
+.panel-heading .delete-button{
+    color: white;
+    float: right;
+    clear: left;
+}

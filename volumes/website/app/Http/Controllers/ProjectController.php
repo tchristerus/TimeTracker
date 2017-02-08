@@ -34,4 +34,18 @@ class ProjectController extends Controller
 
         return response('Something went wrong', 500);
     }
+
+    public function removeProject(Request $req){
+        $user = Auth::getUser();
+        $project = Project::find($req->id);
+        if ($project == null) {
+
+        }
+
+        if ($user->projects->contains($project)){
+            $project->delete();
+        }
+
+        return redirect('/dashboard');
+    }
 }

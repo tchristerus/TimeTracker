@@ -42,6 +42,8 @@ Route::group(['middleware'=>'auth'],function() {
 
     Route::post('dashboard/project/add', 'ProjectController@addProject');
 
+    Route::get('/dashboard/project/remove/{id}','ProjectController@removeProject');
+
     Route::get('/logout', function(){
         Auth::logout();
         return redirect('/login');
