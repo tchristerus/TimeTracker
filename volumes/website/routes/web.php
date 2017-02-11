@@ -39,10 +39,15 @@ Route::group(['middleware'=>'guest'],function() {
 
 Route::group(['middleware'=>'auth'],function() {
     Route::get('/dashboard','ProjectController@getProjects');
+    Route::get('/dashboard/teams','TeamController@getTeams');
+
 
     Route::post('dashboard/project/add', 'ProjectController@addProject');
 
+
+    // TODO validation
     Route::get('/dashboard/project/remove/{id}','ProjectController@removeProject');
+    Route::get('/dashboard/teams/members/{id}','TeamController@getMembers');
 
     Route::get('/logout', function(){
         Auth::logout();

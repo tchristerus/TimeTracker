@@ -5,13 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Project
+ * App\Team
  *
  * @mixin \Eloquent
  */
-class Project extends Model
+class Team extends Model
 {
     public function user(){
         $this->belongsTo('App\User');
+    }
+
+    public function users(){
+        return $this->belongsToMany('App\User');
     }
 }

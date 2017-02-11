@@ -1,4 +1,5 @@
 @include('view')
+@include('sections/navbar')
 
 <!DOCTYPE html>
 <html lang="en">

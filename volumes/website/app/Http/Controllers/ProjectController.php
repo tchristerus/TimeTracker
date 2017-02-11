@@ -8,6 +8,7 @@ use App\Project;
 use Illuminate\Http\Request;
 use Auth;
 use View;
+
 class ProjectController extends Controller
 {
 

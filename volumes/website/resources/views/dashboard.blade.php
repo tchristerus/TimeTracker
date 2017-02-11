@@ -1,4 +1,5 @@
 @include('view')
+@include('sections/navbar')
 @include('sections/dialogs')
 
 <!DOCTYPE html>
@@ -15,6 +16,7 @@
 </head>
 <body>
 <div class="container-fluid">
+
     <nav class="navbar navbar-default navbar-no-margin-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -32,7 +34,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$user->forename}} {{$user->surname}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="active"><a href="">Projects</a></li>
-                            <li><a href="/teams">Teams</a></li>
+                            <li><a href="/dashboard/teams">Teams</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/account/settings">Account settings</a></li>
                             <li><a href="/logout">Logout</a></li>

@@ -1,4 +1,5 @@
 @include('view')
+@include('sections/navbar')
 @include('sections/forms')
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,7 @@
 </head>
 <body>
 <div class="container-fluid">
+
     @yield('navbar')
 
     <div class="col-md-12 ">
