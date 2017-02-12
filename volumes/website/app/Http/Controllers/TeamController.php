@@ -13,12 +13,14 @@ class TeamController extends Controller
 {
     public function getTeams(){
         $user = \Auth::getUser();
-        $teams = Team::where('ownerId', '=', $user->id)->get();
+        $ownTeams = Team::where('ownerId', '=', $user->id)->get();
 
+        $joinedTeams = $user->teams;
 
 
         return View::make('teams')->with([
-            'teams' => $teams,
+            'ownTeams' => $ownTeams,
+            'joinedTeams' => $joinedTeams,
             'user' => \Auth::getUser()
         ]);
     }

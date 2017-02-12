@@ -46,24 +46,38 @@
     </nav>
 
     <div class="row">
-        @if(count($teams) > 0)
+        @if(count($ownTeams) > 0 || count($joinedTeams) > 0 )
             <div class="col-md-4">
                 <div class="whitespace-30"></div>
                 <div class="list-group">
 
-                    @foreach($teams as $team)
-                        <div class="list-group-item cursor-click" data-teamId="{{$team->id}}">
+                    @foreach($ownTeams as $ownTeam)
+                        <div class="list-group-item cursor-click" data-teamId="{{$ownTeam->id}}">
                             <div class="row-action-primary">
                                 <i class="material-icons">people</i>
                             </div>
                             <div class="row-content">
-                                <h4 class="list-group-item-heading">{{$team->name}}</h4>
+                                <h4 class="list-group-item-heading">{{$ownTeam->name}}</h4>
 
-                                <p class="list-group-item-text">{{ str_limit($team->description, $limit = 50, $end = '...') }}</p>
+                                <p class="list-group-item-text">{{ str_limit($ownTeam->description, $limit = 50, $end = '...') }}</p>
                             </div>
                         </div>
                         <div class="list-group-separator"></div>
                     @endforeach
+
+                        @foreach($joinedTeams as $joinedTeam)
+                            <div class="list-group-item cursor-click" data-teamId="{{$joinedTeam->id}}">
+                                <div class="row-action-primary">
+                                    <i class="material-icons">people</i>
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading">{{$joinedTeam->name}}</h4>
+
+                                    <p class="list-group-item-text">{{ str_limit($joinedTeam->description, $limit = 50, $end = '...') }}</p>
+                                </div>
+                            </div>
+                            <div class="list-group-separator"></div>
+                        @endforeach
 
                 </div>
                 <a href="" class="btn btn-raised btn-success btn-add-project" data-toggle="modal" data-target="#create-team-dialog" >Create team<div class="ripple-container"></div></a></div>
