@@ -25,6 +25,7 @@ class CreateTeamRequest extends FormRequest
     {
         return [
             'name'=> 'required|min:2',
+            'description' => 'required'
         ];
     }
 }
