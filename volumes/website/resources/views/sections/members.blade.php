@@ -4,7 +4,7 @@
         @foreach ($users as $user)
             <div class="list-group-item">
                 <div class="row-picture">
-                    <img class="circle" src="/img/profileimage.jpg" alt="icon">
+                    <img class="circle" src="/img/profileImage.jpg" alt="icon">
                 </div>
                 <div class="row-content">
                     <h4 class="list-group-item-heading">{{$user->forename}} {{$user->surname}}</h4>
