@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JoinTeamRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Team;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function register(RegisterRequest $req){
+    /**
+     * Use this functino to create an account
+     *
+     * @param RegisterRequest $req
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function register(RegisterRequest $req)
+    {
         $user = new User();
         $user->forename = ucfirst($req->forename);
         $user->surname = ucfirst($req->surname);
@@ -18,19 +28,19 @@ class UserController extends Controller
         $user->email = $req->email;
         $user->password = bcrypt($req->password);
 
-        if($user->save()){
+        if ($user->save()) {
             $authenticated = Auth::attempt([
                 'email' => $req->email,
                 'password' => $req->password
             ]);
 
-            if($authenticated){
+            if ($authenticated) {
                 return redirect('/dashboard')->with(
                     [
                         'registered' => "You have successfully registered and have been logged in automatically."
                     ]);
             }
-        }else{
+        } else {
             return redirect('/register')->with(
                 [
                     'register_error' => "Something went wrong while registering. This may be an internal problem."
@@ -38,13 +48,21 @@ class UserController extends Controller
         }
     }
 
-    public function authenticate(LoginRequest $request){
+    /**
+     * Used this function to authenticate users
+     *
+     * @param LoginRequest $req
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function authenticate(LoginRequest $req)
+    {
         $authenticated = Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password
-        ],$request->remember_me);
+            'email' => $req->email,
+            'password' => $req->password
+        ], $req->remember_me);
 
-        if($authenticated){
+        if ($authenticated) {
             return redirect('/dashboard');
         }
 
@@ -54,4 +72,22 @@ class UserController extends Controller
             ]);
     }
 
+    /**
+     * Use this function to join a team
+     *
+     * @param JoinTeamRequest $req
+     */
+    //TODO safety! and returning errors like user does not exist
+    public function joinTeam(JoinTeamRequest $req)
+    {
+        $user = User::where('email', '=', $req->email)->first();
+        if ($user) {
+            $team = Team::find($req->teamId);
+            if ($team) {
+                if($team->users()->save($user)){
+                    return redirect('/dashboard/teams');
+                }
+            }
+        }
+    }
 }

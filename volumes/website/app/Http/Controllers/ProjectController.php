@@ -12,7 +12,8 @@ use View;
 class ProjectController extends Controller
 {
 
-    public function getProjects (){
+    public function getProjects()
+    {
         $user = Auth::getUser();
         $projects = $user->projects;
 
@@ -22,28 +23,30 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function addProject (AddProjectRequest $req){
+    public function addProject(AddProjectRequest $req)
+    {
         $project = new Project();
         $project->userId = Auth::getUser()->id;
         $project->name = $req->name;
         $project->description = $req->description;
 
 
-        if($project->save()){
+        if ($project->save()) {
             return redirect('/dashboard');
         }
 
         return response('Something went wrong', 500);
     }
 
-    public function removeProject(Request $req){
+    public function removeProject(Request $req)
+    {
         $user = Auth::getUser();
         $project = Project::find($req->id);
         if ($project == null) {
 
         }
 
-        if ($user->projects->contains($project)){
+        if ($user->projects->contains($project)) {
             $project->delete();
         }
 

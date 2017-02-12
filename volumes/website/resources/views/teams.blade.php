@@ -50,7 +50,7 @@
             <div class="col-md-4">
                 <div class="whitespace-30"></div>
                 <div class="list-group">
-
+                    <h5 class="text-center">Your teams</h5>
                     @foreach($ownTeams as $ownTeam)
                         <div class="list-group-item cursor-click" data-teamId="{{$ownTeam->id}}">
                             <div class="row-action-primary">
@@ -64,20 +64,20 @@
                         </div>
                         <div class="list-group-separator"></div>
                     @endforeach
-
-                        @foreach($joinedTeams as $joinedTeam)
-                            <div class="list-group-item cursor-click" data-teamId="{{$joinedTeam->id}}">
-                                <div class="row-action-primary">
-                                    <i class="material-icons">people</i>
-                                </div>
-                                <div class="row-content">
-                                    <h4 class="list-group-item-heading">{{$joinedTeam->name}}</h4>
-
-                                    <p class="list-group-item-text">{{ str_limit($joinedTeam->description, $limit = 50, $end = '...') }}</p>
-                                </div>
+                    <h5 class="text-center">Teams you participate in</h5>
+                    @foreach($joinedTeams as $joinedTeam)
+                        <div class="list-group-item cursor-click" data-teamId="{{$joinedTeam->id}}">
+                            <div class="row-action-primary">
+                                <i class="material-icons">people</i>
                             </div>
-                            <div class="list-group-separator"></div>
-                        @endforeach
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading">{{$joinedTeam->name}}</h4>
+
+                                <p class="list-group-item-text">{{ str_limit($joinedTeam->description, $limit = 50, $end = '...') }}</p>
+                            </div>
+                        </div>
+                        <div class="list-group-separator"></div>
+                    @endforeach
 
                 </div>
                 <a href="" class="btn btn-raised btn-success btn-add-project" data-toggle="modal" data-target="#create-team-dialog" >Create team<div class="ripple-container"></div></a></div>
@@ -110,13 +110,16 @@
 
                 </div>
             </div>
+            <a href="" class="btn btn-danger btn-fab btn-fab-add" data-toggle="modal" data-target="#create-team-dialog"><i class="material-icons">add</i><div class="ripple-container"></div></a>
         @endif
 
+            <a href="" id="btn-add-person" class="btn btn-danger btn-fab btn-fab-add hidden" data-toggle="modal" data-target="#invite-user-dialog" data-teamId=""><i class="material-icons">person_add</i><div class="ripple-container"></div></a>
     </div>
 </div>
 
 
 @yield('create_team_dialog')
+@yield('invite_user_dialog')
 
 @yield('scripts')
 
@@ -138,12 +141,21 @@
         $.post("/dashboard/team/members", {'id': $(this).attr('data-teamId'),'_token': '{{ csrf_token() }}'}, function( data ) {
             $( "#member-results" ).html( data );
             element.find('div i').html('arrow_forward')
+
+            $('#btn-add-person').attr('data-teamId', element.attr('data-teamId'));
+            $('#btn-add-person').removeClass('hidden');
         });
     });
 
     @if(!$errors->isEmpty())
         $('#create-team-dialog').modal('show');
     @endif
+
+    // are you sure to remove project ... dialog
+    $('#invite-user-dialog').on('show.bs.modal', function(e) {
+        console.log($(e.relatedTarget).attr('data-teamId'));
+        $(this).find('#teamIdValue').attr('value', $(e.relatedTarget).attr('data-teamId'));
+    });
 </script>
 
 </body>

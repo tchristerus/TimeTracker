@@ -11,11 +11,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Team extends Model
 {
-    public function user(){
+    public function user()
+    {
         $this->belongsTo('App\User');
     }
 
-    public function users(){
+    public function users()
+    {
         return $this->belongsToMany('App\User');
     }
 }

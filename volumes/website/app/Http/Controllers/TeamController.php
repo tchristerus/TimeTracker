@@ -11,7 +11,8 @@ use View;
 
 class TeamController extends Controller
 {
-    public function getTeams(){
+    public function getTeams()
+    {
         $user = \Auth::getUser();
         $ownTeams = Team::where('ownerId', '=', $user->id)->get();
 
@@ -25,22 +26,24 @@ class TeamController extends Controller
         ]);
     }
 
-    public function getMembers(GetMembersRequest $req){
+    public function getMembers(GetMembersRequest $req)
+    {
         $user = \Auth::getUser();
         //$members = TeamMember::where('teamId', '=', $req->id)->get();
         $team = Team::find($req->id);
 
-        if($team == null)
+        if ($team == null)
             return "";
 
         $users = $team->users;
 
         return View::make('sections/members')->with([
-           'users' => $users
+            'users' => $users
         ]);
     }
 
-    public function createTeam(CreateTeamRequest $req){
+    public function createTeam(CreateTeamRequest $req)
+    {
         $user = \Auth::getUser();
 
         $team = new Team();
@@ -48,16 +51,16 @@ class TeamController extends Controller
         $team->name = $req->name;
         $team->description = $req->description;
 
-        if($team->save()){
+        if ($team->save()) {
             return \Redirect('/dashboard/teams')->with([
-                'team_created_id'=>$team->id
+                'team_created_id' => $team->id
             ]);
         }
 
         return \Redirect('/dashboard/teams')
             ->withInput()
             ->withErrors([
-           'team_creation_failed'=>'Something went wrong while creating the new team. Please try again later.'
-        ]);
+                'team_creation_failed' => 'Something went wrong while creating the new team. Please try again later.'
+            ]);
     }
 }
