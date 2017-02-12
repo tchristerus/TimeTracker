@@ -83,7 +83,12 @@ class UserController extends Controller
         $user = User::where('email', '=', $req->email)->first();
         if ($user) {
             $team = Team::find($req->teamId);
+
             if ($team) {
+                if($team->ownerId != Auth::getUser()->id){
+                    // not owning the project.
+                    return 'You do not own this project';
+                }
                 if($team->users()->save($user)){
                     return redirect('/dashboard/teams');
                 }

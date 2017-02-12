@@ -16,7 +16,7 @@ class TeamController extends Controller
         $user = \Auth::getUser();
         $ownTeams = Team::where('ownerId', '=', $user->id)->get();
 
-        $joinedTeams = $user->teams;
+        $joinedTeams = $user->teams->where('ownerId', '!=', $user->id);
 
 
         return View::make('teams')->with([

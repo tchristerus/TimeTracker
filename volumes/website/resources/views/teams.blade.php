@@ -52,7 +52,7 @@
                 <div class="list-group">
                     <h5 class="text-center">Your teams</h5>
                     @foreach($ownTeams as $ownTeam)
-                        <div class="list-group-item cursor-click" data-teamId="{{$ownTeam->id}}">
+                        <div class="list-group-item cursor-click" data-teamId="{{$ownTeam->id}}" data-owned="true">
                             <div class="row-action-primary">
                                 <i class="material-icons">people</i>
                             </div>
@@ -66,7 +66,7 @@
                     @endforeach
                     <h5 class="text-center">Teams you participate in</h5>
                     @foreach($joinedTeams as $joinedTeam)
-                        <div class="list-group-item cursor-click" data-teamId="{{$joinedTeam->id}}">
+                        <div class="list-group-item cursor-click" data-teamId="{{$joinedTeam->id}}" data-owned="false">
                             <div class="row-action-primary">
                                 <i class="material-icons">people</i>
                             </div>
@@ -142,8 +142,14 @@
             $( "#member-results" ).html( data );
             element.find('div i').html('arrow_forward')
 
-            $('#btn-add-person').attr('data-teamId', element.attr('data-teamId'));
-            $('#btn-add-person').removeClass('hidden');
+            if(element.attr('data-owned') == "true") {
+                $('#btn-add-person').attr('data-teamId', element.attr('data-teamId'));
+                $('#btn-add-person').removeClass('hidden');
+            }else{
+                if(!$('#btn-add-person').hasClass('hidden')){
+                    $('#btn-add-person').addClass('hidden');
+                }
+            }
         });
     });
 
