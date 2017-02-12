@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateTeamRequest;
+use App\Http\Requests\GetMembersRequest;
 use App\Team;
 use App\TeamMember;
 use Illuminate\Http\Request;
@@ -21,15 +23,39 @@ class TeamController extends Controller
         ]);
     }
 
-    public function getMembers(Request $req){
+    public function getMembers(GetMembersRequest $req){
         $user = \Auth::getUser();
         //$members = TeamMember::where('teamId', '=', $req->id)->get();
-        $members = Team::find($req->id);
+        $team = Team::find($req->id);
 
-        
+        if($team == null)
+            return "";
 
-//        return View::make('sections/members')->with([
-//           'members' => $members
-//        ]);
+        $users = $team->users;
+
+        return View::make('sections/members')->with([
+           'users' => $users
+        ]);
+    }
+
+    public function createTeam(CreateTeamRequest $req){
+        $user = \Auth::getUser();
+
+        $team = new Team();
+        $team->ownerId = $user->id;
+        $team->name = $req->name;
+        $team->description = $req->description;
+
+        if($team->save()){
+            return \Redirect('/dashboard/teams')->with([
+                'team_created_id'=>$team->id
+            ]);
+        }
+
+        return \Redirect('/dashboard/teams')
+            ->withInput()
+            ->withErrors([
+           'team_creation_failed'=>'Something went wrong while creating the new team. Please try again later.'
+        ]);
     }
 }

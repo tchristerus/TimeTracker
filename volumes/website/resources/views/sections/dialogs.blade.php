@@ -49,3 +49,40 @@
         </div>
     </div>
 @endsection
+
+@section('create_team_dialog')
+    <div id="create-team-dialog" class="modal fade" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Create new team</h4>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                    </ul>
+                    <form action="/dashboard/team/create" method="post">
+                        {{csrf_field()}}
+
+                        <div class="form-group label-floating is-empty">
+                            <label for="name" class="control-label">Team name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
+                        </div>
+
+                        <div class="form-group label-floating is-empty">
+                            <label for="description" class="control-label">Description</label>
+                            <textarea id="description" name="description" class="form-control">{{old('description')}}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-raised btn-info btn-block" value="Create team"><div class="ripple-container"></div></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

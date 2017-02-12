@@ -53,7 +53,7 @@
         {{csrf_field()}}
         <div class="form-group label-floating is-empty">
             <label for="email" class="control-label">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"}}>
         </div>
 
         <div class="form-group label-floating is-empty">

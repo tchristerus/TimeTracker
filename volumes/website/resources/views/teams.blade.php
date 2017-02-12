@@ -52,33 +52,34 @@
                 <div class="list-group">
 
                     @foreach($teams as $team)
-                        <div class="list-group-item">
+                        <div class="list-group-item cursor-click" data-teamId="{{$team->id}}">
                             <div class="row-action-primary">
                                 <i class="material-icons">people</i>
                             </div>
                             <div class="row-content">
-                                <h4 class="list-group-item-heading">{{$team->title}}</h4>
+                                <h4 class="list-group-item-heading">{{$team->name}}</h4>
 
-                                <p class="list-group-item-text">{{$team->description}}</p>
+                                <p class="list-group-item-text">{{ str_limit($team->description, $limit = 50, $end = '...') }}</p>
                             </div>
                         </div>
                         <div class="list-group-separator"></div>
                     @endforeach
 
-
                 </div>
-            </div>
+                <a href="" class="btn btn-raised btn-success btn-add-project" data-toggle="modal" data-target="#create-team-dialog" >Create team<div class="ripple-container"></div></a></div>
 
             <div class="col-md-8 no-padding">
                 <div class="whitespace-30"></div>
 
-                <div class="bs-component">
-                    <div class="alert alert-dismissible alert-info">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>Info</strong> No team selected. Please click on one of the teams on the left.
+                <div id="member-results">
+
+                    <div class="bs-component">
+                        <div class="alert alert-dismissible alert-info">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>Info</strong> No team selected. Please click on one of the teams on the left.
+                        </div>
                     </div>
                 </div>
-
             </div>
 
         @else
@@ -100,12 +101,36 @@
     </div>
 </div>
 
-<a href="" class="btn btn-danger btn-fab btn-fab-add" data-toggle="modal" data-target="#add-project-dialog"><i class="material-icons">add</i><div class="ripple-container"></div></a>
 
-@yield('add_project_dialog')
-@yield('remove_project_warning_dialog')
+@yield('create_team_dialog')
 
 @yield('scripts')
+
+<script>
+    $('div[data-teamId]').click(function(){
+        var element = $(this);
+        $( "#member-results" ).html('<div class="text-center">LOADING...</div>');
+
+
+        // Ressetting all icons
+        $('div[data-teamId] div i').each(function(){
+            $(this).html('people');
+        })
+
+
+        //loading icon while fetching data
+        element.find('div i').html('swap_vert');
+
+        $.post("/dashboard/team/members", {'id': $(this).attr('data-teamId'),'_token': '{{ csrf_token() }}'}, function( data ) {
+            $( "#member-results" ).html( data );
+            element.find('div i').html('arrow_forward')
+        });
+    });
+
+    @if(!$errors->isEmpty())
+        $('#create-team-dialog').modal('show');
+    @endif
+</script>
 
 </body>
 </html>

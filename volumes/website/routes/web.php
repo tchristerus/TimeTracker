@@ -47,7 +47,9 @@ Route::group(['middleware'=>'auth'],function() {
 
     // TODO validation
     Route::get('/dashboard/project/remove/{id}','ProjectController@removeProject');
-    Route::get('/dashboard/teams/members/{id}','TeamController@getMembers');
+    Route::post('/dashboard/team/members','TeamController@getMembers');
+
+    Route::post('/dashboard/team/create','TeamController@createTeam');
 
     Route::get('/logout', function(){
         Auth::logout();
