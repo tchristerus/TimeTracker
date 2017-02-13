@@ -24,9 +24,12 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2 class="header">Time Tracker started development!</h2>
-                    <p style="clear:both">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie elementum dui eget aliquam. Aliquam non ante arcu. Nulla posuere ipsum risus, ut hendrerit metus dignissim non. In mauris nunc, imperdiet sed turpis non, hendrerit pulvinar ante. Cras tincidunt molestie lobortis. Pellentesque ut lobortis arcu, et gravida eros. In turpis arcu, elementum eu nunc id, sodales gravida ipsum. Curabitur vulputate justo ut nulla iaculis, ac sagittis purus fringilla.
+                    <p>
+                        Have you ever wondered how many hours you have worked on a project but did not keep track of it?
+                        I had the same problem and therefore I have crated this tool, it includes single project tracking but also team projects. Which means you can create your own team! and keep track of all the people you have invited. Whenever a user stops working on something you will be able to see what they did and how long they worked on it.
 
-                        Fusce faucibus pretium turpis posuere suscipit. Maecenas faucibus pellentesque nibh, volutpat rhoncus leo commodo eget. Donec rutrum elit in auctor tristique. Nulla vehicula interdum magna, sed posuere nisl sollicitudin id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec ligula id dui lobortis fringilla. Sed quis consectetur metus, non sodales eros. Curabitur mattis blandit risus vitae porta.</p>
+                        Do not wait any longer and sign up to see it yourself!
+                    </p>
                 </div>
                 <div class="col-md-4">
                     <img class="img-responsive" src="img/cartoon.jpg"/>
@@ -38,6 +41,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">Latest news!</div>
             <div class="panel-body">
+                Team system almost done!<br>
+                13/02/2017
+                <br><br>
                 Login and register is done!<br>
                 05/02/2017
                 <br><br>

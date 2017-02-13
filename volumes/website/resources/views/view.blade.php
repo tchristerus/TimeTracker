@@ -36,3 +36,46 @@
     </script>
 @endsection
 
+@section('scripts_custom_teams')
+    <script>
+        $('div[data-teamId]').click(function(){
+            var element = $(this);
+            $( "#member-results" ).html('<div class="text-center">LOADING...</div>');
+
+
+            // Ressetting all icons
+            $('div[data-teamId] div i').each(function(){
+                $(this).html('people');
+            })
+
+
+            //loading icon while fetching data
+            element.find('div i').html('swap_vert');
+
+            $.post("/dashboard/team/members", {'id': $(this).attr('data-teamId'),'_token': '{{ csrf_token() }}'}, function( data ) {
+                $( "#member-results" ).html( data );
+                element.find('div i').html('arrow_forward')
+
+                if(element.attr('data-owned') == "true") {
+                    $('#btn-add-person').attr('data-teamId', element.attr('data-teamId'));
+                    $('#btn-add-person').removeClass('hidden');
+                }else{
+                    if(!$('#btn-add-person').hasClass('hidden')){
+                        $('#btn-add-person').addClass('hidden');
+                    }
+                }
+            });
+        });
+
+        @if(!$errors->isEmpty())
+            $('#create-team-dialog').modal('show');
+        @endif
+
+        // are you sure to remove project ... dialog
+        $('#invite-user-dialog').on('show.bs.modal', function(e) {
+            console.log($(e.relatedTarget).attr('data-teamId'));
+            $(this).find('#teamIdValue').attr('value', $(e.relatedTarget).attr('data-teamId'));
+        });
+    </script>
+@endsection
+

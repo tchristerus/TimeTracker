@@ -37,7 +37,7 @@ class TeamController extends Controller
 
         $users = $team->users;
 
-        return View::make('sections/members')->with([
+        return View::make('sections/teams/members')->with([
             'users' => $users
         ]);
     }
