@@ -53,7 +53,7 @@
                                         <p>{{$project->description}}</p>
                                         <i class="fa fa-clock-o fa-1x vcenter"></i><strong> 200 hours total</strong><br>
                                         <i class="fa fa-hourglass-start fa-1x vcenter"></i> Not active
-                                        <a class="btn btn-raised btn-info btn-block">Start<div class="ripple-container"></div></a>
+                                        <a id="btn_start" data-projectId="{{$project->id}}" class="btn btn-raised btn-info btn-block">Start<div class="ripple-container"></div></a>
                                     </div>
                                 </div>
                             </div>

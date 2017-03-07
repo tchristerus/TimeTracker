@@ -1,0 +1,7 @@
+syncs:
+  code-sync:
+    src: './volumes/website'
+    dest: '/website'
+    sync_host_port: 10872
+    sync_excludes: ['node_modules']
+    sync_args: '-v --copy-links --hard-links'

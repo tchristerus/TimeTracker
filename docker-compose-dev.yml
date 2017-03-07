@@ -1,0 +1,12 @@
+version: "2"
+services:
+  nginx:
+    volumes:
+      - code-sync:/website:rw
+  php-fpm:
+    volumes:
+      - code-sync:/website:rw
+
+volumes:
+  code-sync:
+    external: true
